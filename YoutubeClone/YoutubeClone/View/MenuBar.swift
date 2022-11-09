@@ -18,10 +18,11 @@ class MenuBar: UIView{
         //to have some cells to populate the collectionView we will set the datasource and delegate
         cv.dataSource = self
         cv.delegate = self
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        cv.register(MenuCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         return cv
     }()
     
+    let imageNames = ["home", "trending", "subscriptions", "account"]
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,8 +41,9 @@ class MenuBar: UIView{
 
 extension MenuBar: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .green
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
+        let imageString = imageNames[indexPath.row]
+        cell.cellImage = UIImage(named: imageString)
         return cell
     }
     

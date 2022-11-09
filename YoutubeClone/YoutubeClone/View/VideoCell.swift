@@ -9,7 +9,7 @@ import UIKit
 
 class VideoCell: UICollectionViewCell{
     //MARK: - Properties
-    
+
     private var videoImageView: UIImageView = {
         let iv = UIImageView()
         iv.clipsToBounds = true
