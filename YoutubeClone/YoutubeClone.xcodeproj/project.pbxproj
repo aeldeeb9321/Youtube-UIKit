@@ -17,6 +17,8 @@
 		25CF21B92918905000AE22C0 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF21B82918905000AE22C0 /* MenuBar.swift */; };
 		25CF21BB29189B0300AE22C0 /* MenuBarOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF21BA29189B0300AE22C0 /* MenuBarOptions.swift */; };
 		25CF229E291B493B00AE22C0 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF229D291B493B00AE22C0 /* MenuCell.swift */; };
+		25CF24912921CFBC00AE22C0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF24902921CFBC00AE22C0 /* Video.swift */; };
+		25CF24932921D2D100AE22C0 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF24922921D2D100AE22C0 /* Channel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		25CF21B82918905000AE22C0 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		25CF21BA29189B0300AE22C0 /* MenuBarOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarOptions.swift; sourceTree = "<group>"; };
 		25CF229D291B493B00AE22C0 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		25CF24902921CFBC00AE22C0 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		25CF24922921D2D100AE22C0 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 		25CF21B329186EFD00AE22C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				25CF24902921CFBC00AE22C0 /* Video.swift */,
+				25CF24922921D2D100AE22C0 /* Channel.swift */,
 				25CF21BA29189B0300AE22C0 /* MenuBarOptions.swift */,
 			);
 			path = Model;
@@ -182,9 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				25CF21B729186FFE00AE22C0 /* Extensions.swift in Sources */,
+				25CF24932921D2D100AE22C0 /* Channel.swift in Sources */,
 				25CF21A1291869A700AE22C0 /* HomeController.swift in Sources */,
 				25CF21B92918905000AE22C0 /* MenuBar.swift in Sources */,
 				25CF21B529186F0A00AE22C0 /* VideoCell.swift in Sources */,
+				25CF24912921CFBC00AE22C0 /* Video.swift in Sources */,
 				25CF219D291869A700AE22C0 /* AppDelegate.swift in Sources */,
 				25CF219F291869A700AE22C0 /* SceneDelegate.swift in Sources */,
 				25CF229E291B493B00AE22C0 /* MenuCell.swift in Sources */,

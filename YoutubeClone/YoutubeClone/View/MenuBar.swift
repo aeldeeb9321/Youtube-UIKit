@@ -36,6 +36,10 @@ class MenuBar: UIView{
     private func configureViewComponents(){
         addSubview(collectionView)
         collectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        
+        //this allows the homeButton to be selected without using a tableView data source method
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .left)
     }
 }
 
@@ -43,7 +47,7 @@ extension MenuBar: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MenuCell
         let imageString = imageNames[indexPath.row]
-        cell.cellImage = UIImage(named: imageString)
+        cell.cellImage = UIImage(named: imageString)?.withRenderingMode(.alwaysTemplate)
         return cell
     }
     

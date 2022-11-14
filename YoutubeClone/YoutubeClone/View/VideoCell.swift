@@ -9,12 +9,24 @@ import UIKit
 
 class VideoCell: UICollectionViewCell{
     //MARK: - Properties
-
+    var video: Video? {
+        didSet{
+            guard let video = video else{ return }
+            guard let channel = video.channel else{ return }
+            self.videoImageView.image = UIImage(named: video.thumbnailImageName)
+            self.videoTitleLabel.text = video.title
+            if let iconImage = UIImage(named: channel.profileImageName!){
+                self.creatorIconImage.image = iconImage
+            }
+            if let name = channel.name, let views = video.numberOfViews{
+                self.videoDescriptionLabel.text = "\(name) • \(views)B views • 8 years ago"
+            }
+        }
+    }
     private var videoImageView: UIImageView = {
         let iv = UIImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "taylor_swift_blank_space")
         return iv
     }()
     
@@ -24,18 +36,17 @@ class VideoCell: UICollectionViewCell{
         iv.contentMode = .scaleAspectFill
         iv.setDimesions(height: 40, width: 40)
         iv.layer.cornerRadius = 35 / 2
-        iv.image = UIImage(named: "taylor_swift_profile")
         return iv
     }()
     
     private let videoTitleLabel: UILabel = {
-        let label = UILabel().makeLabel(withText: "Taylor Swift - Blank Space", textColor: .label, withFont: UIFont.boldSystemFont(ofSize: 18))
+        let label = UILabel().makeLabel(textColor: .label, withFont: UIFont.boldSystemFont(ofSize: 18))
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
     private let videoDescriptionLabel: UILabel = {
-        let label = UILabel().makeLabel(withText: "TaylorSwiftVEVO • 1,604,684,607 views • 8 years ago", textColor: .gray, withFont: UIFont.systemFont(ofSize: 14))
+        let label = UILabel().makeLabel(textColor: .gray, withFont: UIFont.systemFont(ofSize: 14))
         return label
     }()
     

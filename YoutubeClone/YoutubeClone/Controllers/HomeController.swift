@@ -11,6 +11,16 @@ private let reuseIdentifier = "cvId"
 
 class HomeController: UICollectionViewController {
     //MARK: - Properties
+    private let TaylorChannel: Channel = {
+        let channel = Channel(name: "TaylorSwiftVEVO", profileImageName: "taylor_swift_profile")
+        return channel
+    }()
+    
+    private lazy var videos: [Video] = {
+        let blankSpaceVideo = Video(thumbnailImageName: "taylor_swift_blank_space", title: "Taylor Swift - Blank Space", channel: TaylorChannel, numberOfViews: 1.6, date:  Date())
+        let badBloodVideo = Video(thumbnailImageName: "taylor_swift_bad_blood", title: "Taylor Swift - Bad Blood ft. Kendrick Lamar", channel: TaylorChannel, numberOfViews: 1.5, date: Date())
+        return [blankSpaceVideo, badBloodVideo]
+    }()
     private let menuBar: MenuBar = {
         let view = MenuBar()
         view.setDimesions(height: 50, width: 0)
@@ -20,12 +30,6 @@ class HomeController: UICollectionViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        //to fix the menuBar overlapping cell content we will add an inset of the height of the menuBar
-        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        //collectionview scroll view goes underneath the menu bar, need to change the scroll insets
-        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         configureUI()
         setupMenuBar()
     }
@@ -36,6 +40,13 @@ class HomeController: UICollectionViewController {
     
     //MARK: - Helpers
     private func configureUI(){
+        collectionView.backgroundColor = .white
+        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //to fix the menuBar overlapping cell content we will add an inset of the height of the menuBar
+        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        //collectionview scroll view goes underneath the menu bar, need to change the scroll insets
+        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        
         navigationController?.navigationBar.backgroundColor = UIColor.setRGB(red: 230, green: 32, blue: 31)
         navigationController?.navigationBar.barStyle = .black
         //navigationController?.navigationBar.isTranslucent = false
@@ -50,17 +61,27 @@ class HomeController: UICollectionViewController {
     private func setupMenuBar(){
         view.addSubview(menuBar)
         menuBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        navigationItem.rightBarButtonItems = [ UIBarButtonItem(image: UIImage(named: "navMoreIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMoreButtonTapped)), UIBarButtonItem(image: UIImage(named: "searchIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSearchButtonTapped))]
+    }
+    
+    //MARK: - Selectors
+    @objc private func handleSearchButtonTapped(){
+        print("search pressed")
+    }
+    
+    @objc private func handleMoreButtonTapped(){
+        print("more pressed")
     }
 }
 
 extension HomeController{
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! VideoCell
-        cell.backgroundColor = .blue
+        cell.video = videos[indexPath.item]
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        videos.count
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
