@@ -32,6 +32,7 @@ class MenuCell: UICollectionViewCell{
             menuImageView.tintColor = isSelected ? .white: UIColor.setRGB(red: 91, green: 14, blue: 13)
         }
     }
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
